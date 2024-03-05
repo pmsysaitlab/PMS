@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'web',
-    'line',
+    'linechatbot',
     'allauth',
     'allauth.account',
     'django.contrib.sites',
@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'aitpmsys.urls'
@@ -166,3 +167,12 @@ LINE_LOGIN_CHANNEL_ID = '2003931347'
 LINE_LOGIN_CHANNEL_SECRET = '1f00729f7994b38121b642afa1b3d228'
 
 
+# SMTP Configuration
+# 有需要再開放，開放時需要考慮流量
+# 可以換成另外一個mail : pmsys.aitlab@gmail.com，只是需要申請應用程式密碼
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'  #SMTP伺服器
+# EMAIL_PORT = 587               #TLS通訊埠號
+# EMAIL_USE_TLS = True           #開啟TLS(傳輸層安全性)
+# EMAIL_HOST_USER = 'service.aitlab@gmail.com'  #寄件者電子郵件
+# EMAIL_HOST_PASSWORD = 'hthdpzfveokubdvw'  #Gmail應用程式的密碼

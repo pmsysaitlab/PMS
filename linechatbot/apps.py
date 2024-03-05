@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class LineConfig(AppConfig):
+class LinechatbotConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'line'
+    name = 'linechatbot'
