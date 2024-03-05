@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'web',
+    'line',
+    'allauth',
+    'allauth.account',
+    'django.contrib.sites',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.line',
+    'sslserver',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +62,7 @@ ROOT_URLCONF = 'aitpmsys.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'aitteachingsys','templates')], #20230721 add by 11157017 #主要設定的是系統的templates資料夾，app的資料夾涵蓋在app設定中，因此無須另外設定也抓地到。
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,9 +125,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-Hant'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Taipei'
 
 USE_I18N = True
 
@@ -135,3 +143,26 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
+MEDIA_TEACHER=os.path.join(BASE_DIR,'teacherapp/static/media/')  #/root/aitteachingsys/teacherapp/static/media/
+MEDIA_STUDENT=os.path.join(BASE_DIR,'studentapp/static/media/')  #/root/aitteachingsys/studentapp/static/media/
+
+STATICILES_DIRS = [
+    os.path.join(BASE_DIR,'static'),
+    os.path.join(BASE_DIR,'aitteachingsys','static'),
+    os.path.join(BASE_DIR,'teacherapp','static'),  #/root/aitteachingsys/teacherapp/static
+    os.path.join(BASE_DIR,'studentapp','static'),  #/root/aitteachingsys/studentapp/static
+]
+
+NGROK_INFO='https://aitcourse.ntou.edu.tw:15480/' #20230810 add by 11157017
+
+#LINEBOT SETTING
+#ChatBOT
+LINE_CHANNEL_ACCESS_TOKEN = '02qeHOzIhsQuDxYd4fJJh0RFOUdyaFg2Tu/RA9p+LVDpDYNC8B3AuAseHaDD+ZIzZ71rBkH9EJ4rqT+JBMMXJ2X0xTKaee7G+C9b54dZZB74GIvOXiBY/Vxj8FKfnODUsoDu17Lj4HKXTOIByAw66AdB04t89/1O/w1cDnyilFU='
+LINE_CHANNEL_SECRET = '443e1314011990d61d4ffe1c10b85aba'
+#LINE Login
+LINE_LOGIN_CHANNEL_ID = '2003931347'
+LINE_LOGIN_CHANNEL_SECRET = '1f00729f7994b38121b642afa1b3d228'
+
+
